@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { getCompleteTripData, getCarbonHistory } from "./apiUtils";
+import CarbonChart from "./CarbonChart";
+import RouteMap from "./RouteMap";
 import "./App.css";
 import "./CarbonFootprintMap.css";
 
 function CarbonFootprintMap() {
+
+
     var [startAddress, setStartAddress] = useState("");
     var [endAddress, setEndAddress] = useState("");
     var [transportMode, setTransportMode] = useState("driving-car");
     var [tripData, setTripData] = useState(null);
     var [history, setHistory] = useState([]);
+
 
     var handleCalculate = async function(e) {
         e.preventDefault();
@@ -17,14 +22,17 @@ function CarbonFootprintMap() {
         loadHistory();
     };
 
+
     var loadHistory = async function() {
         var historyData = await getCarbonHistory();
         setHistory(historyData);
     };
 
+
     React.useEffect(function() {
         loadHistory();
     }, []);
+
 
     return (
         <div>
@@ -37,10 +45,12 @@ function CarbonFootprintMap() {
                 </ul>
             </nav>
             
+
             <div className = "carbon-footprint-map">
                 <div className = "container">
                     <h1> Carbon Footprint Calculator </h1>
                     <p className = "subtitle"> Calculate the environmental impact of your journey </p>
+
 
                     <form onSubmit = {handleCalculate} className = "calculator-form">
                         <div className = "form-group">
@@ -54,6 +64,7 @@ function CarbonFootprintMap() {
                             />
                         </div>
 
+
                         <div className = "form-group">
                             <label htmlFor = "end-address"> Destination Address </label>
                             <input
@@ -64,6 +75,7 @@ function CarbonFootprintMap() {
                                 required
                             />
                         </div>
+
 
                         <div className = "form-group">
                             <label htmlFor = "transport-mode"> Transportation Mode </label>
@@ -78,15 +90,19 @@ function CarbonFootprintMap() {
                             </select>
                         </div>
 
+
                         <button type = "submit" className = "calculate-btn">
                             Calculate Carbon Footprint
                         </button>
                     </form>
 
+
+
                     {tripData && (
                         <div className = "results-section">
                             <h2> Trip Results </h2>
                             
+
                             <div className = "results-grid">
                                 <div className = "result-card">
                                     <h3> Route Information </h3>
@@ -108,6 +124,7 @@ function CarbonFootprintMap() {
                                     </div>
                                 </div>
 
+
                                 <div className = "result-card carbon-card">
                                     <h3> Carbon Footprint </h3>
                                     <div className = "carbon-display">
@@ -122,6 +139,7 @@ function CarbonFootprintMap() {
                                     </div>
                                 </div>
 
+
                                 <div className = "result-card">
                                     <h3> Location Coordinates </h3>
                                     <div className = "info-item">
@@ -131,6 +149,8 @@ function CarbonFootprintMap() {
                                             {tripData.startLocation.coords.longitude.toFixed(4)}
                                         </span>
                                     </div>
+
+
                                     <div className = "info-item">
                                         <span className = "label"> End: </span>
                                         <span className = "value">
@@ -140,8 +160,24 @@ function CarbonFootprintMap() {
                                     </div>
                                 </div>
                             </div>
+
+
+                            <div style = {{ marginTop: "32px" }}>
+                                <h3> Carbon Emissions Chart </h3>
+                                <CarbonChart carbonData = {tripData.carbon} />
+                            </div>
+
+                            <div style = {{ marginTop: "32px" }}>
+                                <h3> Route Map </h3>
+                                <RouteMap 
+                                    startCoords = {tripData.startLocation.coords} 
+                                    endCoords = {tripData.endLocation.coords} 
+                                />
+                            </div>
                         </div>
                     )}
+
+
 
                     {history.length > 0 && (
                         <div className = "history-section">
@@ -151,7 +187,7 @@ function CarbonFootprintMap() {
                                     return (
                                         <div key = {index} className = "history-item">
                                             <div className = "history-route">
-                                                {item.start_address} → {item.end_address}
+                                                {item.start_address} to {item.end_address}
                                             </div>
                                             <div className = "history-details">
                                                 <span> {item.distance_km} km </span>
@@ -169,5 +205,7 @@ function CarbonFootprintMap() {
         </div>
     );
 }
+
+
 
 export default CarbonFootprintMap;
