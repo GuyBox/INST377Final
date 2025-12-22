@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Index from "./index";
+import Index from "./Index";
 import CarbonFootprintMap from "./CarbonFootprintMap";
 import About from "./About";
 import ContactHelp from "./ContactHelp";
