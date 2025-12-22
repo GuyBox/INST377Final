@@ -9,10 +9,10 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path = "/" element = { <Index /> } />
-        <Route path = "/carbonFootprintMap" element = { <CarbonFootprintMap /> } />
-        <Route path = "/about" element = { <About /> } />
-        <Route path = "/contact" element = { <ContactHelp /> } />
+        <Route path = "/" element = {<Index />} />
+        <Route path = "/carbonFootprintMap" element = {<CarbonFootprintMap />} />
+        <Route path = "/about" element = {<About />} />
+        <Route path = "/contact" element = {<ContactHelp />} />
       </Routes>
     </Router>
   );

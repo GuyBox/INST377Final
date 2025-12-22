@@ -1,0 +1,56 @@
+.home-page {
+    background: #1e491a;
+    min-height: 800px;
+    padding: 32px;
+}
+
+.hero-section {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+}
+
+.hero-section h1 {
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.hero-description {
+    margin-bottom: 32px;
+}
+
+.cta-button {
+    padding: 16px 32px;
+    font-size: 18px;
+    background: white;
+    color: #1e491a;
+    border: none;
+    cursor: pointer;
+}
+
+.quick-stats {
+    display: flex;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 16px;
+    flex: 1;
+}
+
+.stat-number {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.stat-label {
+    font-size: 32px;
+}
