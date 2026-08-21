@@ -91,5 +91,5 @@ inst377FinalProject/
 - Root Directory: inst377FinalProject
 - Build Command: npm run build
 - Output Directory: dist
-- add all environment variables frpm the .env file
+- add all environment variables from the .env file
 - Deploy it
